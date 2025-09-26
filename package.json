@@ -1,0 +1,22 @@
+{
+  "name": "DeepSpace-user_33F9GDBQfmzaxrorfZpxVElLQYy",
+  "version": "1.0.0",
+  "description": "Miyagi Canvas Repository - DeepSpace-user_33F9GDBQfmzaxrorfZpxVElLQYy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "miyagi",
+    "canvas",
+    "sync"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-react": "^7.27.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
