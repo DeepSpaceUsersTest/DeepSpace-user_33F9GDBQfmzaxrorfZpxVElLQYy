@@ -1,7 +1,9 @@
 {
-  "clock": 2,
-  "documentClock": 2,
-  "tombstones": {},
+  "clock": 42,
+  "documentClock": 42,
+  "tombstones": {
+    "shape:xM9rgM73zokWKKTA": 42
+  },
   "tombstoneHistoryStartsAtClock": 1,
   "schema": {
     "schemaVersion": 2,
@@ -68,12 +70,16 @@
     },
     {
       "state": {
-        "widgets": {},
+        "widgets": {
+          "shape:xM9rgM73zokWKKTA": {
+            "__widget_config": "{\"roomId\":\"room-b444df45-3b52-407c-89c5-bcd5a99cea48\",\"pageId\":\"page:mqau0cKtmjAZmfEF6Lz1x\",\"shapeId\":\"shape:xM9rgM73zokWKKTA\",\"templateHandle\":\"Sheeeeeeeeeeep\"}"
+          }
+        },
         "global": {},
         "id": "canvas_storage:main",
         "typeName": "canvas_storage"
       },
-      "lastChangedClock": 1
+      "lastChangedClock": 6
     }
   ]
 }
