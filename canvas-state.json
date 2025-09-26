@@ -1,6 +1,6 @@
 {
-  "clock": 88,
-  "documentClock": 88,
+  "clock": 128,
+  "documentClock": 128,
   "tombstones": {
     "shape:xM9rgM73zokWKKTA": 42,
     "shape:gOpdMu5c1jvP7ZzF": 45
@@ -96,8 +96,8 @@
         "type": "miyagi-widget",
         "parentId": "page:mqau0cKtmjAZmfEF6Lz1x",
         "index": "a1",
-        "x": 205.4453125,
-        "y": 181.00390625,
+        "x": 125.78784468058359,
+        "y": 226.22801552034088,
         "rotation": 0,
         "isLocked": false,
         "opacity": 1,
@@ -105,8 +105,8 @@
           "initializationState": "ready"
         },
         "props": {
-          "w": 300,
-          "h": 200,
+          "w": 497.96068036282327,
+          "h": 350.470390544587,
           "widgetId": "notepad-react-test_1758902820155",
           "templateHandle": "notepad-react-test",
           "htmlContent": "<!DOCTYPE html>\n<html>\n<head>\n  <title>React Widget</title>\n  <script crossorigin src=\"https://unpkg.com/react@18/umd/react.production.min.js\"></script>\n  <script crossorigin src=\"https://unpkg.com/react-dom@18/umd/react-dom.production.min.js\"></script>\n  <style>\n    body { \n      margin: 0; \n      padding: 0; \n      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n    }\n    #react-root { \n      width: 100%; \n      height: 100vh; \n      display: flex;\n      flex-direction: column;\n    }\n  </style>\n</head>\n<body>\n  <div id=\"react-root\"></div>\n  \n  <script>\n    // Compiled JSX code\n    \n    // Extract all React hooks dynamically (present and future)\n    const reactHooks = {};\n    Object.keys(React).forEach(key => {\n      if (key.startsWith('use') && typeof React[key] === 'function') {\n        reactHooks[key] = React[key];\n      }\n    });\n    \n    // Destructure all available hooks for easy use\n    const {\n      useState, useEffect, useRef, useMemo, useCallback, useContext, \n      useReducer, useLayoutEffect, useImperativeHandle, useDebugValue,\n      useDeferredValue, useId, useInsertionEffect, useSyncExternalStore,\n      useTransition, ...otherHooks\n    } = { ...reactHooks, ...React };\n    \n    // Custom hooks for Miyagi widgets\n    // useStorage hook will be injected by MiyagiStorageService\n    // useGlobalStorage hook will be injected by MiyagiStorageService\n    \n    function NotepadWidget() {\n  // Use our injected storage hook - this will automatically re-render when storage changes\n  const [content, setContent] = useStorage('notepad-content', '');\n  const textareaRef = useRef(null);\n\n  // Handle content changes\n  const handleContentChange = e => {\n    setContent(e.target.value);\n  };\n\n  // Clear notes\n  const clearNotes = () => {\n    if (confirm('Clear all notes?')) {\n      setContent('');\n      textareaRef.current?.focus();\n    }\n  };\n\n  // Auto-focus on mount\n  React.useEffect(() => {\n    setTimeout(() => textareaRef.current?.focus(), 100);\n  }, []);\n  return /*#__PURE__*/React.createElement(\"div\", {\n    style: {\n      margin: 0,\n      padding: '16px',\n      fontFamily: '-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif',\n      background: '#fffef7',\n      display: 'flex',\n      flexDirection: 'column',\n      minHeight: '100vh',\n      boxSizing: 'border-box'\n    }\n  }, /*#__PURE__*/React.createElement(\"div\", {\n    style: {\n      display: 'flex',\n      alignItems: 'center',\n      marginBottom: '12px',\n      paddingBottom: '8px',\n      borderBottom: '1px solid #e5e7eb'\n    }\n  }, /*#__PURE__*/React.createElement(\"div\", {\n    style: {\n      fontSize: '16px',\n      fontWeight: 600,\n      color: '#374151'\n    }\n  }, \"\\uD83D\\uDCDD Quick Notes (React Test)\"), /*#__PURE__*/React.createElement(\"button\", {\n    onClick: clearNotes,\n    style: {\n      marginLeft: 'auto',\n      padding: '4px 8px',\n      border: 'none',\n      borderRadius: '4px',\n      background: '#f3f4f6',\n      color: '#6b7280',\n      fontSize: '12px',\n      cursor: 'pointer'\n    }\n  }, \"Clear\")), /*#__PURE__*/React.createElement(\"textarea\", {\n    ref: textareaRef,\n    value: content,\n    onChange: handleContentChange,\n    placeholder: \"Start typing your notes here...\",\n    style: {\n      flex: 1,\n      border: 'none',\n      outline: 'none',\n      resize: 'none',\n      background: 'transparent',\n      fontFamily: 'inherit',\n      fontSize: '14px',\n      lineHeight: 1.5,\n      color: '#374151',\n      minHeight: '200px'\n    }\n  }));\n}\n\n// Export the widget component - the injection script will handle rendering\nconst WidgetComponent = NotepadWidget;\n    \n    \n    // Auto-render when DOM is ready\n    document.addEventListener('DOMContentLoaded', function() {\n      const root = ReactDOM.createRoot(document.getElementById('react-root'));\n      root.render(React.createElement(WidgetComponent));\n    });\n  </script>\n</body>\n</html>",
@@ -115,7 +115,7 @@
           "zoomScale": 1
         }
       },
-      "lastChangedClock": 88
+      "lastChangedClock": 128
     }
   ]
 }
