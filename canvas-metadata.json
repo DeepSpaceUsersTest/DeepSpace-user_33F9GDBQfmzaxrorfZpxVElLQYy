@@ -1,0 +1,63 @@
+{
+  "canvas": {
+    "roomId": "room-b444df45-3b52-407c-89c5-bcd5a99cea48",
+    "canvasMode": "freeform",
+    "canvasName": "DeepSpace",
+    "gridSize": 10
+  },
+  "pages": [
+    {
+      "id": "page:mqau0cKtmjAZmfEF6Lz1x",
+      "name": "Page 1",
+      "index": "a1",
+      "meta": {},
+      "lastChangedClock": 0
+    }
+  ],
+  "schema": {
+    "schemaVersion": 2,
+    "sequences": {
+      "com.tldraw.store": 5,
+      "com.tldraw.asset": 1,
+      "com.tldraw.camera": 1,
+      "com.tldraw.canvas_storage": 1,
+      "com.tldraw.document": 2,
+      "com.tldraw.instance": 25,
+      "com.tldraw.instance_page_state": 5,
+      "com.tldraw.page": 1,
+      "com.tldraw.instance_presence": 6,
+      "com.tldraw.pointer": 1,
+      "com.tldraw.shape": 4,
+      "com.tldraw.asset.bookmark": 2,
+      "com.tldraw.asset.image": 5,
+      "com.tldraw.asset.video": 5,
+      "com.tldraw.shape.arrow": 7,
+      "com.tldraw.shape.bookmark": 2,
+      "com.tldraw.shape.draw": 3,
+      "com.tldraw.shape.embed": 4,
+      "com.tldraw.shape.frame": 1,
+      "com.tldraw.shape.geo": 12,
+      "com.tldraw.shape.group": 0,
+      "com.tldraw.shape.highlight": 1,
+      "com.tldraw.shape.image": 5,
+      "com.tldraw.shape.line": 6,
+      "com.tldraw.shape.note": 9,
+      "com.tldraw.shape.text": 4,
+      "com.tldraw.shape.video": 4,
+      "com.tldraw.shape.miyagi-widget": 0,
+      "com.tldraw.shape.univer": 0,
+      "com.tldraw.shape.block": 0,
+      "com.tldraw.shape.canvas-link": 0,
+      "com.tldraw.shape.file": 0,
+      "com.tldraw.binding.arrow": 1
+    }
+  },
+  "generatedAt": "2025-09-26T16:07:54.368Z",
+  "clock": 62,
+  "documentClock": 62,
+  "tombstones": {
+    "shape:xM9rgM73zokWKKTA": 42,
+    "shape:gOpdMu5c1jvP7ZzF": 45
+  },
+  "tombstoneHistoryStartsAtClock": 1
+}

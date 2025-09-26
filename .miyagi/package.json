@@ -1,0 +1,10 @@
+{
+  "name": "miyagi-repository-scripts",
+  "version": "1.0.0",
+  "description": "Miyagi canvas repository automation scripts",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-react": "^7.27.1"
+  }
+}

@@ -57,7 +57,7 @@
         "id": "document:document",
         "typeName": "document"
       },
-      "lastChangedClock": 2
+      "lastChangedClock": 62
     },
     {
       "state": {
@@ -72,12 +72,6 @@
     {
       "state": {
         "widgets": {
-          "shape:xM9rgM73zokWKKTA": {
-            "__widget_config": "{\"roomId\":\"room-b444df45-3b52-407c-89c5-bcd5a99cea48\",\"pageId\":\"page:mqau0cKtmjAZmfEF6Lz1x\",\"shapeId\":\"shape:xM9rgM73zokWKKTA\",\"templateHandle\":\"Sheeeeeeeeeeep\"}"
-          },
-          "shape:gOpdMu5c1jvP7ZzF": {
-            "__widget_config": "{\"roomId\":\"room-b444df45-3b52-407c-89c5-bcd5a99cea48\",\"pageId\":\"page:mqau0cKtmjAZmfEF6Lz1x\",\"shapeId\":\"shape:gOpdMu5c1jvP7ZzF\",\"templateHandle\":\"email-composer-react\"}"
-          },
           "shape:pn3PKqfdLyGzFHkt": {
             "__widget_config": "{\"roomId\":\"room-b444df45-3b52-407c-89c5-bcd5a99cea48\",\"pageId\":\"page:mqau0cKtmjAZmfEF6Lz1x\",\"shapeId\":\"shape:pn3PKqfdLyGzFHkt\",\"templateHandle\":\"notepad-react-test\"}",
             "notepad-content": "fassafsafafs"
@@ -87,7 +81,7 @@
         "id": "canvas_storage:main",
         "typeName": "canvas_storage"
       },
-      "lastChangedClock": 62
+      "lastChangedClock": 3
     },
     {
       "state": {
