@@ -1,0 +1,24 @@
+{
+  "shapeId": "shape:todo-widget-abc123",
+  "widgetId": "todo-list-widget_1758903000000",
+  "templateHandle": "todo-list-widget",
+  "position": {
+    "x": 500,
+    "y": 200
+  },
+  "size": {
+    "w": 300,
+    "h": 250
+  },
+  "rotation": 0,
+  "opacity": 1,
+  "isLocked": false,
+  "color": "black",
+  "zoomScale": 1,
+  "meta": {
+    "initializationState": "ready"
+  },
+  "parentId": "page:mqau0cKtmjAZmfEF6Lz1x",
+  "index": "a2",
+  "lastChangedClock": 55
+}
