@@ -59,8 +59,9 @@ fi
 echo "✅ Post-merge hook completed successfully"
 exit 0`;
 
-try {
-  // Ensure .git/hooks directory exists
+async function setupHooks() {
+  try {
+    // Ensure .git/hooks directory exists
   const hooksDir = path.join('.git', 'hooks');
   if (!fs.existsSync(hooksDir)) {
     console.log('❌ .git/hooks directory not found. Make sure you are in a git repository.');
@@ -78,17 +79,23 @@ try {
       fs.rmSync('.miyagi', { recursive: true, force: true });
     }
     
-    // Use download-and-run to download all required scripts
-    console.log('🔄 Downloading compile.js...');
-    execSync('node download-and-run.js compile.js', { stdio: 'inherit' });
+    // Use download-and-run.js once to set up everything (it already handles parallel downloads internally)
+    console.log('🔄 Setting up dependencies and downloading scripts...');
     
-    console.log('🔄 Downloading generate-canvas.js...');
-    execSync('node download-and-run.js generate-canvas.js', { stdio: 'inherit' });
-    
-    console.log('🔄 Downloading unpack-canvas-state.js...');
-    execSync('node download-and-run.js unpack-canvas-state.js', { stdio: 'inherit' });
-    
-    console.log('✅ Fresh scripts downloaded successfully');
+    // Run download-and-run.js once - it will:
+    // 1. Install npm dependencies once
+    // 2. Download all required scripts
+    // 3. Handle everything efficiently
+    try {
+      execSync('node download-and-run.js compile.js', { 
+        stdio: 'inherit',
+        timeout: 120000 // 2 minute timeout for full setup
+      });
+      console.log('✅ Dependencies and scripts setup completed!');
+    } catch (error) {
+      console.error('❌ Setup failed:', error.message);
+      throw error;
+    }
   } else {
     console.log('⚠️  download-and-run.js not found. Scripts will be downloaded on first hook run.');
   }
@@ -113,7 +120,14 @@ try {
   console.log('');
   console.log('Your repository is now ready for automated canvas synchronization!');
 
-} catch (error) {
-  console.error('❌ Failed to setup git hooks:', error.message);
-  process.exit(1);
+  } catch (error) {
+    console.error('❌ Failed to setup git hooks:', error.message);
+    process.exit(1);
+  }
 }
+
+// Run the setup
+setupHooks().catch(error => {
+  console.error('❌ Setup failed:', error.message);
+  process.exit(1);
+});

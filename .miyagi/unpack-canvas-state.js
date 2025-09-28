@@ -5,7 +5,7 @@
  * 
  * Processes all canvas-state.json files in the repository recursively.
  * Each room (root or subcanvas) is processed identically and generates:
- * - Widget directories (shape-{shapeId}/) with properties.json, template.jsx, template.html, storage.json
+ * - Widget directories (widget-{shapeId}/) with properties.json, template.jsx, template.html, storage.json
  * - Canvas metadata files (canvas-metadata.json) 
  * - Global storage files (global-storage.json)
  * - Canvas-link info files (canvas-link-info.json) in target room directories
@@ -30,7 +30,10 @@ class CanvasStateUnpacker {
     console.log('🚀 Starting canvas state unpacking...');
     
     try {
-      // Find all canvas-state.json files (root + all room-*/ subdirectories)
+      // Step 1: Identify and reference the root room
+      await this.identifyAndReferenceRootRoom();
+
+      // Step 2: Find all canvas-state.json files (root + all room-*/ subdirectories)
       const canvasStateFiles = this.findCanvasStateFiles(this.rootDir);
       console.log(`📁 Found ${canvasStateFiles.length} canvas state files`);
 
@@ -48,6 +51,33 @@ class CanvasStateUnpacker {
       console.error('❌ Canvas state unpacking failed:', error);
       process.exit(1);
     }
+  }
+
+  /**
+   * Identify the root room directory and add it to referenced rooms
+   * Ensures there is exactly one root room in the repository
+   */
+  async identifyAndReferenceRootRoom() {
+    console.log('🔍 Identifying root room...');
+
+    const entries = fs.readdirSync(this.rootDir, { withFileTypes: true });
+    const rootRoomDirs = entries
+      .filter(entry => entry.isDirectory() && entry.name.startsWith('room-'))
+      .map(entry => entry.name);
+
+    console.log(`   Found ${rootRoomDirs.length} root-level room directories: ${rootRoomDirs.join(', ')}`);
+
+    if (rootRoomDirs.length === 0) {
+      throw new Error('❌ No root room directory found! Expected exactly one room-* directory in repository root.');
+    }
+
+    if (rootRoomDirs.length > 1) {
+      throw new Error(`❌ Multiple root room directories found: ${rootRoomDirs.join(', ')}. Expected exactly one room-* directory in repository root.`);
+    }
+
+    const rootRoomName = rootRoomDirs[0];
+    this.referencedRooms.add(rootRoomName);
+    console.log(`✅ Root room identified and referenced: ${rootRoomName}`);
   }
 
   /**
@@ -76,7 +106,7 @@ class CanvasStateUnpacker {
    */
   async unpackRoom(canvasStateFilePath) {
     const roomDir = path.dirname(canvasStateFilePath);
-    const roomName = roomDir === this.rootDir ? 'root' : path.basename(roomDir);
+    const roomName = path.basename(roomDir);
     
     console.log(`📄 Unpacking room: ${roomName} (${path.relative(this.rootDir, canvasStateFilePath)})`);
 
@@ -372,7 +402,7 @@ class CanvasStateUnpacker {
    */
   async generateWidgetDirectory(widget, canvasDir) {
     const shapeIdClean = widget.shapeId.replace('shape:', '');
-    const widgetDir = path.join(canvasDir, `shape-${shapeIdClean}`);
+    const widgetDir = path.join(canvasDir, `widget-${shapeIdClean}`);
 
     // Track this widget to prevent cleanup
     this.processedWidgets.add(path.relative(this.rootDir, widgetDir));
@@ -424,9 +454,9 @@ class CanvasStateUnpacker {
     }
 
     // Create canvas-link-info.json in the target room directory
-    const parentRoomName = parentCanvasDir === this.rootDir ? 'root' : path.basename(parentCanvasDir);
+    const parentRoomName = path.basename(parentCanvasDir);
     const canvasLinkInfo = {
-      parentCanvasId: parentRoomName === 'root' ? path.basename(this.rootDir) : parentRoomName,
+      parentCanvasId: parentRoomName,
       linkShapeId: canvasLink.shapeId,
       position: canvasLink.properties.position,
       size: canvasLink.properties.size,
@@ -515,7 +545,7 @@ class CanvasStateUnpacker {
   }
 
   /**
-   * Find all shape-* directories recursively
+   * Find all widget-* directories recursively
    */
   findShapeDirectories(dir) {
     const shapeDirs = [];
@@ -525,7 +555,7 @@ class CanvasStateUnpacker {
       if (entry.isDirectory()) {
         const fullPath = path.join(dir, entry.name);
         
-        if (entry.name.startsWith('shape-')) {
+        if (entry.name.startsWith('widget-')) {
           shapeDirs.push(fullPath);
         } else if (!entry.name.startsWith('.')) {
           shapeDirs.push(...this.findShapeDirectories(fullPath));
