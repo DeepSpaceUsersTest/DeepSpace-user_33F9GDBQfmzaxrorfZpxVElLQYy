@@ -2,6 +2,8 @@
 
 This repository contains widgets that sync with your Miyagi canvas.
 
+test
+
 ## 🚀 FIRST-TIME SETUP (Required)
 
 **IMPORTANT**: Run this command once after cloning the repository:
